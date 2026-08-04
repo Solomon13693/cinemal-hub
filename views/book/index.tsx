@@ -7,7 +7,7 @@ import { useSeatSelectionStore } from '@/store'
 import { ROUTES } from '@/constants'
 import { formatCurrency } from '@/utils'
 import { SeatMap } from '@/components/seat'
-import { Button, EmptyState } from '@/components/ui'
+import { Button, EmptyState, SeatMapSkeleton } from '@/components/ui'
 import type { SeatAvailabilityType, SeatSelectionItemType } from '@/types'
 
 export default function BookView() {
@@ -37,11 +37,7 @@ export default function BookView() {
   }
 
   if (sessionLoading || seatsLoading || authLoading) {
-    return (
-      <div className="container page-section">
-        <p className="text-sm text-text-grey">Loading seat map…</p>
-      </div>
-    )
+    return <SeatMapSkeleton />
   }
 
   if (!session) {

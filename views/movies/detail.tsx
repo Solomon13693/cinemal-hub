@@ -6,7 +6,7 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useEvent, useSessions } from '@/services'
 import { ROUTES } from '@/constants'
 import { SessionPicker } from '@/components/event'
-import { RemoteImage, Skeleton, SkeletonLine } from '@/components/ui'
+import { DetailPageSkeleton, RemoteImage, SessionPickerSkeleton } from '@/components/ui'
 
 export default function MovieDetailView() {
   const { id } = useParams<{ id: string }>()
@@ -17,12 +17,7 @@ export default function MovieDetailView() {
   })
 
   if (loading) {
-    return (
-      <div className="container page-section space-y-4">
-        <SkeletonLine height="h-8" width="w-48" />
-        <Skeleton className="h-80 w-full rounded-2xl" />
-      </div>
-    )
+    return <DetailPageSkeleton />
   }
 
   if (!event || event.kind !== 'movie') {
@@ -90,7 +85,7 @@ export default function MovieDetailView() {
             <p className="mt-1 text-sm text-text-muted">Select a session to choose seats.</p>
             <div className="mt-4">
               {sessionsLoading ? (
-                <p className="text-sm text-text-grey">Loading sessions…</p>
+                <SessionPickerSkeleton />
               ) : (
                 <SessionPicker sessions={sessions} />
               )}

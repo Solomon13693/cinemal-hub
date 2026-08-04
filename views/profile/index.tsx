@@ -8,7 +8,7 @@ import { useAuth, updateProfile } from '@/services'
 import { ROUTES } from '@/constants'
 import { getErrorMessage } from '@/utils'
 import { useToast } from '@/hooks'
-import { Button, EmptyState, Input, PhoneInput } from '@/components/ui'
+import { Button, EmptyState, Input, PhoneInput, AuthFormSkeleton } from '@/components/ui'
 
 type ProfileFormValues = {
   name: string
@@ -45,6 +45,14 @@ export default function ProfileView() {
         title="Sign in to manage your profile"
         action={{ label: 'Go to Login', href: ROUTES.login }}
       />
+    )
+  }
+
+  if (authLoading) {
+    return (
+      <div className="container page-section">
+        <AuthFormSkeleton />
+      </div>
     )
   }
 

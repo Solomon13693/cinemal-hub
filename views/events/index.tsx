@@ -6,6 +6,7 @@ import { useCategories, useEvents } from '@/services'
 import { useDebouncedValue } from '@/hooks'
 import { EVENT_SUBTYPE_LABEL } from '@/constants'
 import { EventCard } from '@/components/event'
+import { EventGridSkeleton } from '@/components/ui'
 import { cn } from '@/lib'
 import type { EventSubtypeType } from '@/types'
 
@@ -103,9 +104,9 @@ export default function EventsView() {
           ))}
         </div>
 
-        <div className={cn('mt-6', loading && 'opacity-70')}>
+        <div className="mt-6">
           {loading ? (
-            <p className="text-sm text-text-grey">Loading events…</p>
+            <EventGridSkeleton count={10} />
           ) : events.length === 0 ? (
             <p className="rounded-2xl border border-white/6 bg-white/3 p-10 text-center text-sm text-text-grey">
               No events match your filters.

@@ -8,7 +8,7 @@ import { initializePaystackBooking, verifyPaystackPayment } from '@/lib/api-clie
 import { getTicketHref, ROUTES, HOLD_MINUTES } from '@/constants'
 import { formatCurrency, formatDateTime, getErrorMessage } from '@/utils'
 import { useToast } from '@/hooks'
-import { Button, EmptyState } from '@/components/ui'
+import { Button, EmptyState, AuthFormSkeleton } from '@/components/ui'
 
 export default function CheckoutView() {
   const router = useRouter()
@@ -25,7 +25,15 @@ export default function CheckoutView() {
 
   const total = seatSelectionTotal(seats)
 
-  if (!authLoading && !isAuthenticated) {
+  if (authLoading) {
+    return (
+      <div className="container page-section">
+        <AuthFormSkeleton />
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) {
     return (
       <EmptyState
         title="Sign in to checkout"

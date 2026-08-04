@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useEvents } from '@/services'
 import { ROUTES, BRAND } from '@/constants'
 import { EventCard } from '@/components/event'
+import { EventGridSkeleton } from '@/components/ui'
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
@@ -81,7 +82,7 @@ export default function HomeView() {
           </div>
 
           {moviesLoading ? (
-            <p className="text-sm text-text-grey">Loading movies…</p>
+            <EventGridSkeleton count={5} />
           ) : movies.length === 0 ? (
             <p className="rounded-2xl border border-white/6 bg-white/3 p-10 text-center text-sm text-text-grey">
               No movies published yet.
@@ -113,7 +114,7 @@ export default function HomeView() {
           </div>
 
           {eventsLoading ? (
-            <p className="text-sm text-text-grey">Loading events…</p>
+            <EventGridSkeleton count={5} />
           ) : events.length === 0 ? (
             <p className="rounded-2xl border border-white/6 bg-white/3 p-10 text-center text-sm text-text-grey">
               No events published yet.

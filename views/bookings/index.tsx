@@ -5,7 +5,7 @@ import { useAuth, useMyBookings } from '@/services'
 import { getBookingDetailHref, getTicketHref, ROUTES } from '@/constants'
 import { formatCurrency, formatDateTime } from '@/utils'
 import { BookingStatusBadge } from '@/components/booking'
-import { EmptyState } from '@/components/ui'
+import { BookingsListSkeleton, EmptyState } from '@/components/ui'
 
 export default function BookingsView() {
   const { user, isAuthenticated, loading: authLoading } = useAuth()
@@ -25,18 +25,18 @@ export default function BookingsView() {
       <h1 className="font-display text-3xl font-bold text-off-white">My Bookings</h1>
       <p className="mt-2 text-sm text-text-muted">Tickets and reservations you have made.</p>
 
-      <div className="mt-6 overflow-hidden rounded-2xl border border-white/6 bg-card-dark/60">
+      <div className="mt-6">
         {loading || authLoading ? (
-          <p className="p-6 text-sm text-text-grey">Loading bookings…</p>
+          <BookingsListSkeleton />
         ) : bookings.length === 0 ? (
-          <div className="px-6 py-10 text-center">
+          <div className="overflow-hidden rounded-2xl border border-white/6 bg-card-dark/60 px-6 py-10 text-center">
             <p className="text-sm text-text-grey">You haven&apos;t booked any seats yet.</p>
             <Link href={ROUTES.movies} className="mt-3 inline-block text-sm font-semibold text-primary">
               Browse movies →
             </Link>
           </div>
         ) : (
-          <div className="divide-y divide-white/4">
+          <div className="overflow-hidden rounded-2xl border border-white/6 bg-card-dark/60 divide-y divide-white/4">
             {bookings.map(booking => (
               <div
                 key={booking.id}

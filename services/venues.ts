@@ -25,7 +25,8 @@ export async function generateSeatsForVenue(
 
   for (let r = 0; r < rows; r++) {
     const label = rowLabel(r)
-    const isVip = r >= rows - 2
+    // Front rows (closest to screen/stage) are VIP
+    const isVip = r < Math.min(2, rows)
     for (let n = 1; n <= seatsPerRow; n++) {
       seats.push({
         venue_id: venueId,

@@ -19,6 +19,7 @@ import { cn } from '@/lib'
 import { ROUTES } from '@/constants'
 import { useAuth, useLogout } from '@/services'
 import { Logo } from '@/components/brand'
+import { PageSpinnerSkeleton } from '@/components/ui'
 
 const NAV_ITEMS = [
   { href: ROUTES.admin, label: 'Overview', icon: HomeIcon },
@@ -68,7 +69,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   if (loading || !isAdmin) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-charcoal">
-        <p className="text-sm text-text-grey">Loading admin console…</p>
+        <PageSpinnerSkeleton label="Loading admin console" />
       </div>
     )
   }

@@ -73,7 +73,8 @@ async function generateSeats(venueId, rows, seatsPerRow) {
   const seats = []
   for (let r = 0; r < rows; r++) {
     const label = rowLabel(r)
-    const isVip = r >= rows - 2
+    // Front rows (closest to screen/stage) are VIP
+    const isVip = r < 2
     for (let n = 1; n <= seatsPerRow; n++) {
       seats.push({
         venue_id: venueId,

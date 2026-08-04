@@ -5,6 +5,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useCategories, useEvents } from '@/services'
 import { useDebouncedValue } from '@/hooks'
 import { EventCard } from '@/components/event'
+import { EventGridSkeleton } from '@/components/ui'
 import { cn } from '@/lib'
 
 export default function MoviesView() {
@@ -67,9 +68,9 @@ export default function MoviesView() {
           ))}
         </div>
 
-        <div className={cn('mt-6', loading && 'opacity-70')}>
+        <div className="mt-6">
           {loading ? (
-            <p className="text-sm text-text-grey">Loading movies…</p>
+            <EventGridSkeleton count={10} />
           ) : movies.length === 0 ? (
             <p className="rounded-2xl border border-white/6 bg-white/3 p-10 text-center text-sm text-text-grey">
               No movies match your search.

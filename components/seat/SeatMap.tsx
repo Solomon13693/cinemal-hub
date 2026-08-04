@@ -24,7 +24,7 @@ export default function SeatMap({
   return (
     <div className="space-y-6">
       <div className="mx-auto max-w-md">
-        <div className="mb-6 rounded-full bg-gradient-to-b from-white/20 to-transparent px-8 py-2 text-center text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+        <div className="mb-6 rounded-full bg-linear-to-b from-white/20 to-transparent px-8 py-2 text-center text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
           Screen / Stage
         </div>
       </div>

@@ -1,9 +1,16 @@
 import { Suspense } from 'react'
 import LoginView from '@/views/auth/login'
+import { AuthFormSkeleton } from '@/components/ui'
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<p className="text-center text-sm text-text-grey">Loading…</p>}>
+    <Suspense
+      fallback={
+        <div className="container flex min-h-[60vh] items-center justify-center page-section">
+          <AuthFormSkeleton />
+        </div>
+      }
+    >
       <LoginView />
     </Suspense>
   )

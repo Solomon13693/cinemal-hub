@@ -7,7 +7,7 @@ import { useCustomer, useMyBookings } from '@/services'
 import { formatCurrency } from '@/utils'
 import { getAdminBookingDetailHref, ROUTES } from '@/constants'
 import { BookingStatusBadge } from '@/components/booking'
-import { Skeleton, SkeletonLine } from '@/components/ui'
+import { OrdersListSkeleton, Skeleton, SkeletonLine } from '@/components/ui'
 
 export default function AdminCustomerDetailView() {
   const { id } = useParams<{ id: string }>()
@@ -91,11 +91,7 @@ export default function AdminCustomerDetailView() {
         </div>
 
         {bookingsLoading ? (
-          <div className="space-y-3 px-5 py-6">
-            <SkeletonLine height="h-10" />
-            <SkeletonLine height="h-10" />
-            <SkeletonLine height="h-10" />
-          </div>
+          <OrdersListSkeleton count={4} />
         ) : bookings.length === 0 ? (
           <p className="px-5 py-10 text-center text-sm text-text-grey">No bookings yet.</p>
         ) : (

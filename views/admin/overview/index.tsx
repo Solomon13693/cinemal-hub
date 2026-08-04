@@ -14,7 +14,7 @@ import {
 } from '@/constants'
 import { formatCurrency, formatDateTime } from '@/utils'
 import { BookingStatusBadge } from '@/components/booking'
-import { StatsRowSkeleton } from '@/components/ui'
+import { OrdersListSkeleton, StatsRowSkeleton } from '@/components/ui'
 
 export default function AdminOverviewView() {
   const { events: movies, loading: moviesLoading } = useEvents({ kind: 'movie' })
@@ -66,7 +66,7 @@ export default function AdminOverviewView() {
             <h2 className="text-sm font-semibold text-off-white">Recent bookings</h2>
           </div>
           {loading ? (
-            <div className="p-5 text-sm text-text-grey">Loading…</div>
+            <OrdersListSkeleton count={5} />
           ) : bookings.length === 0 ? (
             <p className="p-10 text-center text-sm text-text-grey">No bookings yet.</p>
           ) : (
@@ -103,7 +103,9 @@ export default function AdminOverviewView() {
             <h2 className="text-sm font-semibold text-off-white">Upcoming sessions</h2>
           </div>
           {loading ? (
-            <div className="p-5 text-sm text-text-grey">Loading…</div>
+            <div className="px-5 py-2">
+              <OrdersListSkeleton count={5} />
+            </div>
           ) : sessions.length === 0 ? (
             <p className="p-10 text-center text-sm text-text-grey">No upcoming sessions.</p>
           ) : (
